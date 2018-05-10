@@ -32,8 +32,7 @@ namespace AutomatedScanner
                 this._twain.OpenDSM();
             } catch (Exception ex)
             {
-                // Note, error messages might end up being in Russian (Twain library was never translated into English)
-                MessageBox.Show(string.Format("{0}\n\n{1}", ex.Message, ex.StackTrace), "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error opening data source manager", "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -60,7 +59,7 @@ namespace AutomatedScanner
                 this._twain.Acquire();
             } catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error scanning document", "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -95,7 +94,7 @@ namespace AutomatedScanner
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error displaying preview.", "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             // Adds the latest scan into the scans array
             imageScans.Add(this._twain.GetImage(this._twain.ImageCount - 1));
@@ -152,7 +151,7 @@ namespace AutomatedScanner
                 this._isEnable = (e.TwainState & Twain32.TwainStateFlag.DSEnabled) != 0;
             } catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), "Scanner", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
